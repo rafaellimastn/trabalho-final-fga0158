@@ -8,15 +8,15 @@ public class Usuario {
 	
 	public void  cadastrar() {
 		Scanner sc = new Scanner(System.in);
-		this.nome = getString("Qual seu nome?", sc);
-		this.cpf = getString("Qual seu cpf?", sc);
-		this.email = getString("Qual seu email?", sc);
-		this.telefone = getString("Qual seu telefone?", sc);
-		this.senha = getString("Qual sua senha?",sc);
+		setNome(getString("Qual seu nome?", sc));
+		setCpf(getString("Qual seu cpf?", sc));
+		setEmail(getString("Qual seu email?", sc)) ;
+		setTelefone(getString("Qual seu telefone?", sc));
+		setSenha (getString("Qual sua senha?",sc));
 	}
 	String getString(String output, Scanner sc) {
 		System.out.println(output);
-		String resposta = sc.next();
+		String resposta = sc.nextLine();
 		return resposta;
 	}
 	

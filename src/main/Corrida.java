@@ -3,32 +3,63 @@ package main;
 
 public class Corrida  {
 	private String id, origem, destino;
-	private double distancia, valorTotal;
-	double tarifaBase, multiplicador;
+	private double distancia, valorTotal, tarifaBase, multiplicador;
 	Motorista motorista;
 	Passageiro passageiro;
 	TipoCorrida tipo;
 	StatusCorrida status;
 	
-	public void imprimirDistancia() {
-		System.out.printf("Distancia total da corrida: R$ %.2f.\n", this.distancia); 
+	private void imprimirOrigem() {
+		System.out.println("Origem: " + getOrigem() + ".");
 	}
-	public void imprimirValor() {
-		System.out.printf("Valor total da corrida: R$ %.2f\n", this.valorTotal);
-
+	private void imprimirDestino() {
+		System.out.println("Destino: " + getDestino() + ".");
+	}
+	private void imprimirDistancia() {
+		System.out.printf("Distancia corrida: %.2f km.\n", getDistancia()); 
+	}
+	private void imprimirValor() {
+		System.out.printf("Valor corrida: R$ %.2f.\n", getValorTotal());
+	}
+	private void imprimirNomeMotorista() {
+		System.out.println("Motorista: " +  motorista.getNome() + ".");
+	}
+	private void imprimirTipo() {
+		if(tipo == TipoCorrida.Comum) {
+			System.out.println("Tipo: Comum.");
+			System.exit(0);
+		} else {
+			System.out.println("Tipo: Luxo.");
+		}
+		
+	}
+	public void imprimirNomePassageiro() {
+		System.out.println("Passageiro: " + passageiro.getNome() + ".");
+	}
+	
+	public void imprimirMenu() {
+		System.out.println("--MENU DA CORRIDA--");
+		imprimirOrigem();
+		imprimirDestino();
+		imprimirDistancia();
+		imprimirTipo();
+		imprimirValor();
+		imprimirNomeMotorista();
+		imprimirNomePassageiro();
 	}
 	public double calcularPreco() {
 		this.iniciarValores();
-		this.valorTotal = tarifaBase + (multiplicador * distancia);
+		this.setValorTotal(tarifaBase + (multiplicador * distancia));
 		return this.valorTotal;
 	}
+	
 	private void iniciarValores() {
 		if (this.tipo == TipoCorrida.Comum) {
-			tarifaBase = 5;
-			multiplicador = 1;
+			setTarifaBase(5);
+			setMultiplicador(1);
 		} else if (this.tipo == TipoCorrida.Luxo) {
-			tarifaBase = 9;
-			multiplicador = 2.2;
+			setTarifaBase(9);
+			setMultiplicador(2.2);
 		}
 	}
 	

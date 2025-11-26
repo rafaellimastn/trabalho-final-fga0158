@@ -56,11 +56,6 @@ public class Passageiro extends Usuario {
 			return false;
 		}
 	}
-//	private String getString(String output, Scanner sc) {
-//		System.out.println(output);
-//		String resposta = sc.next();
-//		return resposta;
-//	}
 	
 	public Passageiro() {
 		super();
