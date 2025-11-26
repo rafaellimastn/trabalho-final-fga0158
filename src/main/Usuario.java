@@ -4,15 +4,21 @@ public class Usuario {
 	private String nome, cpf, email, telefone, senha;
 	private double mediaAvaliacao;
 	
+	
 	public boolean autenticar(String senha) {
-		if (senha == this.senha) {
+		if (senha.equals(this.senha)) {
 			System.out.println("Voce foi autenticado com sucesso.");
 			return true;
 		}
 		System.out.println("Senha incorreta.");
 		return false;
 	}
+	
 	public Usuario() {}
+	public Usuario(String nome) {
+		super();
+		this.nome = nome;
+	}
 	public Usuario(String nome, String cpf, String email, String telefone, String senha) {
 		super();
 		this.nome = nome;
