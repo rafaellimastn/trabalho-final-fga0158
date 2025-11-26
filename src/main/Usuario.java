@@ -1,9 +1,24 @@
 package main;
 
+import java.util.Scanner;
+
 public class Usuario {
 	private String nome, cpf, email, telefone, senha;
 	private double mediaAvaliacao;
 	
+	public void  cadastrar() {
+		Scanner sc = new Scanner(System.in);
+		this.nome = getString("Qual seu nome?", sc);
+		this.cpf = getString("Qual seu cpf?", sc);
+		this.email = getString("Qual seu email?", sc);
+		this.telefone = getString("Qual seu telefone?", sc);
+		this.senha = getString("Qual sua senha?",sc);
+	}
+	String getString(String output, Scanner sc) {
+		System.out.println(output);
+		String resposta = sc.next();
+		return resposta;
+	}
 	
 	public boolean autenticar(String senha) {
 		if (senha.equals(this.senha)) {

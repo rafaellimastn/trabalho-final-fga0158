@@ -1,27 +1,35 @@
 package main;
 
+
 public class Corrida  {
-	private String id, origem, destino, tipo;
+	private String id, origem, destino;
 	private double distancia, valorTotal;
 	double tarifaBase, multiplicador;
 	Motorista motorista;
 	Passageiro passageiro;
+	TipoCorrida tipo;
 	StatusCorrida status;
 	
-	public void tipoCorrida() {
-		if (tipo.equalsIgnoreCase("origem")) {
-			tarifaBase = 5;
-			multiplicador = 1;
-		} else {
-			tarifaBase = 9;
-			multiplicador = 2;
-		}
+	public void imprimirDistancia() {
+		System.out.printf("Distancia total da corrida: R$ %.2f.\n", this.distancia); 
+	}
+	public void imprimirValor() {
+		System.out.printf("Valor total da corrida: R$ %.2f\n", this.valorTotal);
+
 	}
 	public double calcularPreco() {
-		double total;
-		total = tarifaBase + (multiplicador * distancia);
-		this.valorTotal = total;
-		return total;
+		this.iniciarValores();
+		this.valorTotal = tarifaBase + (multiplicador * distancia);
+		return this.valorTotal;
+	}
+	private void iniciarValores() {
+		if (this.tipo == TipoCorrida.Comum) {
+			tarifaBase = 5;
+			multiplicador = 1;
+		} else if (this.tipo == TipoCorrida.Luxo) {
+			tarifaBase = 9;
+			multiplicador = 2.2;
+		}
 	}
 	
 	public String getId() {
@@ -48,13 +56,6 @@ public class Corrida  {
 		this.destino = destino;
 	}
 
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
 
 	public double getDistancia() {
 		return distancia;
@@ -88,13 +89,6 @@ public class Corrida  {
 		this.multiplicador = multiplicador;
 	}
 
-	public Corrida(String origem, String destino, String tipo, Passageiro passageiro) {
-		super();
-		this.origem = origem;
-		this.destino = destino;
-		this.tipo = tipo;
-		this.passageiro = passageiro;
-	}
 	public Motorista getMotorista() {
 		return motorista;
 	}
@@ -106,6 +100,30 @@ public class Corrida  {
 	}
 	public void setPassageiro(Passageiro passageiro) {
 		this.passageiro = passageiro;
+	}
+
+	public TipoCorrida getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoCorrida tipo) {
+		this.tipo = tipo;
+	}
+
+	public Corrida(String origem, String destino, Passageiro passageiro, TipoCorrida tipo) {
+		super();
+		this.origem = origem;
+		this.destino = destino;
+		this.passageiro = passageiro;
+		this.tipo = tipo;
+	}
+	public Corrida(String origem, String destino, double distancia, Passageiro passageiro, TipoCorrida tipo) {
+		super();
+		this.origem = origem;
+		this.destino = destino;
+		this.distancia = distancia;
+		this.passageiro = passageiro;
+		this.tipo = tipo;
 	}
 	
 }
