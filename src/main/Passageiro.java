@@ -1,11 +1,31 @@
 package main;
 
+import java.util.ArrayList;
+
+import java.util.List;
+
 import java.util.Random;
 
 import java.util.Scanner;
 
 public class Passageiro extends Usuario {
-//	private boolean pendenciaFinanceira;
+	@SuppressWarnings("unused")
+	private boolean pendenciaFinanceira;
+	private List<MetodoDePagamento> metodosDePagamento = new ArrayList<>();
+	
+	public void AdicionarMetodoPagamento (MetodoDePagamento metodo) {
+		metodosDePagamento.add(metodo);
+		 }
+	
+	public boolean removerMetodoPagamento (MetodoDePagamento metodo) {
+		 for (int i = 0; i < this.metodosDePagamento.size(); i++) {
+			 	if(metodosDePagamento.get(i) == metodo) {
+			 		metodosDePagamento.remove(i);
+			 		return true;
+			 	}
+	 		}
+		 return false;
+		} 
 	
 	public Corrida solicitarCorrida() {
 		String origem, destino;
@@ -16,7 +36,7 @@ public class Passageiro extends Usuario {
 		distancia = gerador.nextInt(49) + 1;
 		origem = getString("Qual a origem?", sc);
 		destino = getString("Qual a destino?", sc);
-		TipoCorrida tipoCorrida = setTipoCorrida();
+		TipoCorrida tipoCorrida = escolherTipoCorrida();
 		
 		Corrida corrida = new Corrida(origem, destino, distancia, this, tipoCorrida);
 		corrida.setValorTotal(corrida.calcularPreco());
@@ -24,7 +44,7 @@ public class Passageiro extends Usuario {
 		return corrida;
 	}
 	
-	private TipoCorrida setTipoCorrida() {
+	private TipoCorrida escolherTipoCorrida() {
 		int num;
 		TipoCorrida tipo = null;
 		Scanner sc = new Scanner(System.in);
@@ -40,7 +60,7 @@ public class Passageiro extends Usuario {
 				tipo = TipoCorrida.Luxo;
 				break;
 			default:
-				System.out.println("Escolha entre as duas opcoes;");
+				System.out.println("Escolha entre as duas opcoes (1/2).");
 				break;
 		}
 		sc.close();
@@ -49,6 +69,7 @@ public class Passageiro extends Usuario {
 	public boolean cancelarCorrida(Corrida corrida) {
 		if (corrida.getPassageiro() == this) {
 			corrida.status = StatusCorrida.Cancelada;
+			// remover corrida da lista
 			System.out.println("Corrida cancelada com sucesso.");
 			return true;
 		} else {

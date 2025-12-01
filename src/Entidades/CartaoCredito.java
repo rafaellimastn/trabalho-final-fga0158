@@ -5,6 +5,7 @@ import Exceptions.PagamentoRecusadoException;
 
 public class CartaoCredito implements MetodoDePagamento {
 
+	@SuppressWarnings("unused")
 	private String numero, validade, codigoSeguranca;
 	
 	public CartaoCredito(String numero, String validade, String codigoSeguranca) {

@@ -12,8 +12,9 @@ public class Usuario {
 		setCpf(getString("Qual seu cpf?", sc));
 		setEmail(getString("Qual seu email?", sc)) ;
 		setTelefone(getString("Qual seu telefone?", sc));
-		setSenha (getString("Qual sua senha?",sc));
+		setSenha (getString("Qual sua senha?", sc));
 	}
+	
 	String getString(String output, Scanner sc) {
 		System.out.println(output);
 		String resposta = sc.nextLine();
@@ -30,6 +31,7 @@ public class Usuario {
 	}
 	
 	public Usuario() {}
+	// apagar pos teste
 	public Usuario(String nome) {
 		super();
 		this.nome = nome;

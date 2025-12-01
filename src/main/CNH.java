@@ -1,0 +1,46 @@
+package main;
+import java.time.LocalDate;
+public class CNH {
+
+	private String numero;
+    private String nomeMotorista;
+    private LocalDate dataVencimento; // LocalDate é ideal para datas como vencimento
+
+    // Construtor
+    public CNH(String numero, String nomeMotorista, LocalDate dataVencimento) {
+        this.numero = numero;
+        this.nomeMotorista = nomeMotorista;
+        this.dataVencimento = dataVencimento;
+    }
+
+    // Getters
+    public String getNumero() {
+        return numero;
+    }
+
+    public String getNomeMotorista() {
+        return nomeMotorista;
+    }
+
+    public LocalDate getDataVencimento() {
+        return dataVencimento;
+    }
+
+    // Setters (apenas se for necessário atualizar, como a renovação da CNH)
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public void setNomeMotorista(String nomeMotorista) {
+        this.nomeMotorista = nomeMotorista;
+    }
+    
+    public void setDataVencimento(LocalDate dataVencimento) {
+        this.dataVencimento = dataVencimento;
+    }
+
+    // Método de utilidade para checar a validade
+    public boolean estaValida() {
+        return dataVencimento.isAfter(LocalDate.now());
+    }
+}

@@ -9,6 +9,17 @@ public class Corrida  {
 	TipoCorrida tipo;
 	StatusCorrida status;
 	
+	public void imprimirMenu() {
+		System.out.println("--MENU DA CORRIDA--");
+		imprimirOrigem();
+		imprimirDestino();
+		imprimirDistancia();
+		imprimirTipo();
+		imprimirValor();
+		imprimirNomeMotorista();
+		imprimirNomePassageiro();
+	}
+	
 	private void imprimirOrigem() {
 		System.out.println("Origem: " + getOrigem() + ".");
 	}
@@ -33,20 +44,10 @@ public class Corrida  {
 		}
 		
 	}
-	public void imprimirNomePassageiro() {
+	private void imprimirNomePassageiro() {
 		System.out.println("Passageiro: " + passageiro.getNome() + ".");
 	}
 	
-	public void imprimirMenu() {
-		System.out.println("--MENU DA CORRIDA--");
-		imprimirOrigem();
-		imprimirDestino();
-		imprimirDistancia();
-		imprimirTipo();
-		imprimirValor();
-		imprimirNomeMotorista();
-		imprimirNomePassageiro();
-	}
 	public double calcularPreco() {
 		this.iniciarValores();
 		this.setValorTotal(tarifaBase + (multiplicador * distancia));
@@ -155,6 +156,12 @@ public class Corrida  {
 		this.distancia = distancia;
 		this.passageiro = passageiro;
 		this.tipo = tipo;
+	}
+	public StatusCorrida getStatus() {
+		return status;
+	}
+	public void setStatus(StatusCorrida status) {
+		this.status = status;
 	}
 	
 }

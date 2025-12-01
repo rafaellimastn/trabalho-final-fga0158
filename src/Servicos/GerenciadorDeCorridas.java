@@ -4,6 +4,8 @@ import java.util.UUID;
 
 import Exceptions.*;
 
+import main.*;
+
 public class GerenciadorDeCorridas {
 	
 	private Motorista motoristaDisponivel;
