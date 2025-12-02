@@ -61,4 +61,11 @@ public class Motorista extends Usuario{
 	public void setVeiculo(Veiculo veiculo) {
 		this.veiculo = veiculo;
 	}
+	//AVALIAÇÃO
+	public void serAvaliado(Passageiro avaliador, int nota, String comentario) {
+		Avaliacao avaliacao = new Avaliacao(avaliador, this, nota, comentario);
+        this.receberAvaliacao(avaliacao);
+    }
 }
+
+
