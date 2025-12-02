@@ -8,12 +8,13 @@ import exceptions.*;
 public class GerenciadorDeCorridas {
 	
 	private Motorista motoristaDisponivel;
+	private 
 	
 	public GerenciadorDeCorridas(Motorista motoristaDisponivel) {
 		this.motoristaDisponivel = motoristaDisponivel;
 	}
 	
-	public Corrida solicitarCorrida(Passageiro passageiro, String origem, 
+	public void solicitarCorrida(Passageiro passageiro, String origem, 
 			String destino, double distanciaKm, CategoriaServico categoria, MetodoDePagamento metodoPagamento) throws NegocioException {
 		
 		if (passageiro.temPendenciaFinanceira()) {
@@ -22,17 +23,17 @@ public class GerenciadorDeCorridas {
 		
 		if (motoristaDisponivel == null || motoristaDisponivel.getStatusDisponibilidade() != StatusMotorista.ONLINE) {
             throw new NenhumMotoristaDisponivelException("Nenhum motorista online disponível no momento.");
-	}
+		}
 		
-		String id = UUID.randomUUID().toString().substring(0,8);
-		Corrida novaCorrida = new Corrida(id, passageiro, origem, destino, distanciaKm, categoria, metodoPagamento);
-		
-		novaCorrida.setMotoristaDisponivel(motoristaDisponivel);
-		motoristaDisponivel.aceitarCorrida(novaCorrida);
-		novaCorrida.setStatus(StatusCorrida.ACEITA);
-		
-		System.out.println("Corrida " + id + "solicitada e atribuída ao motorista " + motoristaDisponivel.getNome());
-		return novaCorrida;
+//		String id = UUID.randomUUID().toString().substring(0,8);
+//		Corrida novaCorrida = new Corrida(id,  origem, destino, distanciaKm, passageiro, categoria);
+//		
+//		novaCorrida.setMotorista(motoristaDisponivel);
+//		motoristaDisponivel.aceitarCorrida(novaCorrida);
+//		novaCorrida.setStatus(StatusCorrida.Aceita);
+//		
+//		System.out.println("Corrida " + id + "solicitada e atribuída ao motorista " + motoristaDisponivel.getNome());
+//		return novaCorrida;
 	}
 	
 	public void iniciarViagem(Corrida corrida) throws EstadoInvalidoDaCorridaException {

@@ -35,7 +35,6 @@ public class Motorista extends Usuario{
 				return false;
 			}
 		}
-
 	
 	public Motorista(String nome, String cpf, String email, String telefone, String senha) {
 		super(nome, cpf, email, telefone, senha);
@@ -43,6 +42,7 @@ public class Motorista extends Usuario{
 	public Motorista(String nome) {
 		super(nome);
 	}
+	
 	public CNH getCnh() {
 		return cnh;
 	}

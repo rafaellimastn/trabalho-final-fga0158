@@ -134,5 +134,16 @@ public class Corrida  {
 		this.passageiro = passageiro;
 		this.categoria = categoria;
 	}
+
+	public Corrida(String id, String origem, String destino, double distancia, Passageiro passageiro,
+			CategoriaServico categoria) {
+		super();
+		this.id = id;
+		this.origem = origem;
+		this.destino = destino;
+		this.distancia = distancia;
+		this.passageiro = passageiro;
+		this.categoria = categoria;
+	}
 	
 }

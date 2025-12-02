@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Passageiro extends Usuario {
 	@SuppressWarnings("unused")
@@ -32,14 +33,14 @@ public class Passageiro extends Usuario {
 		double distancia;
 		Scanner sc = new Scanner(System.in);
 		
-		Random gerador = new Random();
-		distancia = gerador.nextInt(49) + 1;
+		String id = UUID.randomUUID().toString().substring(0,8);
 		origem = getString("Qual a origem?", sc);
 		destino = getString("Qual a destino?", sc);
-//		TipoCorrida tipoCorrida = escolherTipoCorrida();
+		Random gerador = new Random();
+		distancia = gerador.nextInt(49) + 1;
 		CategoriaServico categoria = escolherTipoCorrida();
 		
-		Corrida corrida = new Corrida(origem, destino, distancia, this, categoria);
+		Corrida corrida = new Corrida(id, origem, destino, distancia, this, categoria);
 		corrida.setValorTotal(corrida.categoria.calcularPreco(corrida));
 		
 		return corrida;
