@@ -113,5 +113,10 @@ public class Passageiro extends Usuario {
 	public Passageiro(String nome) {
 		super(nome);
 	}
+
+	public void serAvaliado(Motorista avaliador, int nota, String comentario) {
+		Avaliacao avaliacao = new Avaliacao(avaliador, this, nota, comentario);
+        this.receberAvaliacao(avaliacao);
+    }
 	
 }
