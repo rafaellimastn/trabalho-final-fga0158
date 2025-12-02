@@ -36,8 +36,12 @@ public class Motorista extends Usuario{
 			}
 		}
 	
-	public Motorista(String nome, String cpf, String email, String telefone, String senha) {
+	public Motorista(String nome, String cpf, String email, String telefone, String senha, CNH cnh, Veiculo veiculo) {
 		super(nome, cpf, email, telefone, senha);
+		this.cnh = cnh;
+		this.veiculo = veiculo;
+		this.status = StatusMotorista.Offline;
+		ListaDeMotoristas.add(this)
 	}
 	public Motorista(String nome) {
 		super(nome);
