@@ -77,4 +77,31 @@ public class Usuario {
 	public double getMediaAvaliacao() {
 		return mediaAvaliacao;
 	}
+
+// avaliação
+
+	public void receberAvaliacao(Avaliacao avaliacao) {
+		if (avaliacao != null) {
+			avaliacoes.add(avaliacao);
+			calcularMedia();
+		}
+	}
+
+	private void calcularMedia() {
+		if (avaliacoes.isEmpty()) {
+			this.mediaAvaliacao = 0;
+			return;
+		}
+
+		double soma = 0;
+		for (Avaliacao a : avaliacoes) {
+			soma += a.getNota();
+		}
+		this.mediaAvaliacao = soma / avaliacoes.size();
+	}
+
+	public double getMediaAvaliacao() {
+		return mediaAvaliacao;
+	}
+
 }
