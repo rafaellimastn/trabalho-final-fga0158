@@ -41,7 +41,6 @@ public class Motorista extends Usuario{
 		this.cnh = cnh;
 		this.veiculo = veiculo;
 		this.status = StatusMotorista.Offline;
-		ListaDeMotoristas.add(this)
 	}
 	public Motorista(String nome) {
 		super(nome);
@@ -70,6 +69,15 @@ public class Motorista extends Usuario{
 		Avaliacao avaliacao = new Avaliacao(avaliador, this, nota, comentario);
         this.receberAvaliacao(avaliacao);
     }
+
+	public Motorista() {
+		super();
+	}
+
+	public Motorista(String nome, String cpf, String email, String telefone, String senha) {
+		super(nome, cpf, email, telefone, senha);
+		setStatus(StatusMotorista.Offline);
+	}
 }
 
 

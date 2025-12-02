@@ -3,33 +3,25 @@ package servicos;
 import java.util.ArrayList;
 import java.util.List;
 
+import entidades.*;
+
 public class GerenciadorUsuario {
 	
-	private List<Usuario> ListaDeUsuarios = new ArrayList<>();
-	private List<Motorista> ListaDeMotoristas = new ArrayList<>();
+	private List<Usuario> listaDeUsuarios = new ArrayList<>();
+	private List<Motorista> listaDeMotoristas = new ArrayList<>();
 	
-	public void CadastrarPassageiro(String Nome, String CPF, String Email, String Senha, String Telefone, String TipoUsuario ) {
-		Passageiro NovoPassageiro = new Passageiro();
-		NovoPassageiro.setNome(Nome);
-		NovoPassageiro.setCPF(CPF);
-		NovoPassageiro.setEmail(Email);
-		NovoPassageiro.setSenha(Senha);
-		NovoPassageiro.setTelefone(Telefone);
-		NovoPassageiro.setTipoUsuario(TipoUsuario);
-		ListaDeUsuarios.add(NovoPassageiro);};
+	public void CadastrarPassageiro(String nome, String cpf, String email, String telefone, String senha) {
+		Passageiro NovoPassageiro = new Passageiro(nome, cpf, email, telefone, senha);
+		listaDeUsuarios.add(NovoPassageiro);
+		}
 		
 		
 		
-		public void CadastrarMotorista(String Nome, String CPF, String Email, String Senha, String Telefone, String TipoUsuario ) {
-			Motorista NovoMotorista = new Motorista();
-			NovoMotorista.setNome(Nome);
-			NovoMotorista.setCPF(CPF);
-			NovoMotorista.setEmail(Email);
-			NovoMotorista.setSenha(Senha);
-			NovoMotorista.setTelefone(Telefone);
-			NovoMotorista.setTipoUsuario(TipoUsuario);
-			ListaDeUsuarios.add(NovoMotorista);
-			ListaDeMotoristas.add(NovoMotorista);};
+	public void CadastrarMotorista(String nome, String cpf, String email, String telefone, String senha) {
+		Motorista novoMotorista = new Motorista(nome, cpf, email, telefone, senha);
+		listaDeMotoristas.add(novoMotorista);
+		listaDeUsuarios.add(novoMotorista);
+		}
 
 		
 }
