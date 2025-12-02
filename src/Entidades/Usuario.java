@@ -1,10 +1,14 @@
 package entidades;
 
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Usuario {
 	private String nome, cpf, email, telefone, senha;
 	private double mediaAvaliacao;
+
+	private List<Avaliacao> avaliacoes = new ArrayList<>();
 	
 	public void  cadastrar() {
 		Scanner sc = new Scanner(System.in);
