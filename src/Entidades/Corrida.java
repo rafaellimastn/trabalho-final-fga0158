@@ -1,4 +1,4 @@
-package main;
+package entidades;
 
 
 public class Corrida  {
@@ -6,18 +6,18 @@ public class Corrida  {
 	private double distancia, valorTotal, tarifaBase, multiplicador;
 	Motorista motorista;
 	Passageiro passageiro;
-	TipoCorrida tipo;
 	StatusCorrida status;
+	CategoriaServico categoria;
 	
 	public void imprimirMenu() {
 		System.out.println("--MENU DA CORRIDA--");
 		imprimirOrigem();
 		imprimirDestino();
 		imprimirDistancia();
-		imprimirTipo();
+		imprimirCategoria();
 		imprimirValor();
-		imprimirNomeMotorista();
 		imprimirNomePassageiro();
+		imprimirNomeMotorista();
 	}
 	
 	private void imprimirOrigem() {
@@ -35,33 +35,18 @@ public class Corrida  {
 	private void imprimirNomeMotorista() {
 		System.out.println("Motorista: " +  motorista.getNome() + ".");
 	}
-	private void imprimirTipo() {
-		if(tipo == TipoCorrida.Comum) {
+	private void imprimirCategoria() {
+		if (categoria instanceof Comum) {
 			System.out.println("Tipo: Comum.");
-			System.exit(0);
-		} else {
+		} else if (categoria instanceof Luxo){
 			System.out.println("Tipo: Luxo.");
+		} else {
+			System.out.println("Categoria não foi escolhida.");
 		}
-		
 	}
+	
 	private void imprimirNomePassageiro() {
 		System.out.println("Passageiro: " + passageiro.getNome() + ".");
-	}
-	
-	public double calcularPreco() {
-		this.iniciarValores();
-		this.setValorTotal(tarifaBase + (multiplicador * distancia));
-		return this.valorTotal;
-	}
-	
-	private void iniciarValores() {
-		if (this.tipo == TipoCorrida.Comum) {
-			setTarifaBase(5);
-			setMultiplicador(1);
-		} else if (this.tipo == TipoCorrida.Luxo) {
-			setTarifaBase(9);
-			setMultiplicador(2.2);
-		}
 	}
 	
 	public String getId() {
@@ -134,34 +119,20 @@ public class Corrida  {
 		this.passageiro = passageiro;
 	}
 
-	public TipoCorrida getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(TipoCorrida tipo) {
-		this.tipo = tipo;
-	}
-
-	public Corrida(String origem, String destino, Passageiro passageiro, TipoCorrida tipo) {
-		super();
-		this.origem = origem;
-		this.destino = destino;
-		this.passageiro = passageiro;
-		this.tipo = tipo;
-	}
-	public Corrida(String origem, String destino, double distancia, Passageiro passageiro, TipoCorrida tipo) {
-		super();
-		this.origem = origem;
-		this.destino = destino;
-		this.distancia = distancia;
-		this.passageiro = passageiro;
-		this.tipo = tipo;
-	}
 	public StatusCorrida getStatus() {
 		return status;
 	}
 	public void setStatus(StatusCorrida status) {
 		this.status = status;
+	}
+
+	public Corrida(String origem, String destino, double distancia, Passageiro passageiro, CategoriaServico categoria) {
+		super();
+		this.origem = origem;
+		this.destino = destino;
+		this.distancia = distancia;
+		this.passageiro = passageiro;
+		this.categoria = categoria;
 	}
 	
 }

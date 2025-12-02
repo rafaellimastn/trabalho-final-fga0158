@@ -1,6 +1,6 @@
-package Entidades;
+package entidades;
 
-import Exceptions.SaldoInsuficienteException;
+import exceptions.SaldoInsuficienteException;
 
 public class Dinheiro implements MetodoDePagamento {
     private double saldo = 100.00; 

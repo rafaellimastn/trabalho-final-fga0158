@@ -1,6 +1,6 @@
-package Entidades;
+package entidades;
 
-import Exceptions.NegocioException;
+import exceptions.NegocioException;
 
 public interface MetodoDePagamento {
 	

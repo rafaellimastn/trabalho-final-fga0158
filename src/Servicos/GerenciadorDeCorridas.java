@@ -1,10 +1,9 @@
-package Servicos;
+package servicos;
 
 import java.util.UUID;
 
-import Exceptions.*;
-
-import main.*;
+import entidades.*;
+import exceptions.*;
 
 public class GerenciadorDeCorridas {
 	

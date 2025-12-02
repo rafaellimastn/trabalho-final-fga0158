@@ -1,7 +1,7 @@
-package Entidades;
+package entidades;
 
-import Exceptions.NegocioException;
-import Exceptions.PagamentoRecusadoException;
+import exceptions.NegocioException;
+import exceptions.PagamentoRecusadoException;
 
 public class CartaoCredito implements MetodoDePagamento {
 

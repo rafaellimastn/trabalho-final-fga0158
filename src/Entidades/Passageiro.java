@@ -1,4 +1,4 @@
-package main;
+package entidades;
 
 import java.util.ArrayList;
 
@@ -29,43 +29,69 @@ public class Passageiro extends Usuario {
 	
 	public Corrida solicitarCorrida() {
 		String origem, destino;
-		long distancia;
+		double distancia;
 		Scanner sc = new Scanner(System.in);
 		
 		Random gerador = new Random();
 		distancia = gerador.nextInt(49) + 1;
 		origem = getString("Qual a origem?", sc);
 		destino = getString("Qual a destino?", sc);
-		TipoCorrida tipoCorrida = escolherTipoCorrida();
+//		TipoCorrida tipoCorrida = escolherTipoCorrida();
+		CategoriaServico categoria = escolherTipoCorrida();
 		
-		Corrida corrida = new Corrida(origem, destino, distancia, this, tipoCorrida);
-		corrida.setValorTotal(corrida.calcularPreco());
+		Corrida corrida = new Corrida(origem, destino, distancia, this, categoria);
+		corrida.setValorTotal(corrida.categoria.calcularPreco(corrida));
 		
 		return corrida;
 	}
 	
-	private TipoCorrida escolherTipoCorrida() {
+	private CategoriaServico escolherTipoCorrida() {
 		int num;
-		TipoCorrida tipo = null;
+		CategoriaServico categoria = null;
 		Scanner sc = new Scanner(System.in);
+		
 		System.out.println("Qual tipo de corrida?");
 		System.out.println("1. Comum");
 		System.out.println("2. Luxo");
 		num = sc.nextInt();
+		
 		switch (num) {
 			case 1:
-				 tipo = TipoCorrida.Comum;
+				categoria = new Comum();
 				 break;
 			case 2:
-				tipo = TipoCorrida.Luxo;
+				categoria = new Luxo();
 				break;
 			default:
 				System.out.println("Escolha entre as duas opcoes (1/2).");
 				break;
 		}
 		sc.close();
-		return tipo;
+		return categoria;
 	}
+// 	private TipoCorrida escolherTipoCorrida() {
+//		int num;
+//		TipoCorrida tipo = null;
+//		Scanner sc = new Scanner(System.in);
+//		System.out.println("Qual tipo de corrida?");
+//		System.out.println("1. Comum");
+//		System.out.println("2. Luxo");
+//		num = sc.nextInt();
+//		switch (num) {
+//			case 1:
+//				 tipo = TipoCorrida.Comum;
+//				 break;
+//			case 2:
+//				tipo = TipoCorrida.Luxo;
+//				break;
+//			default:
+//				System.out.println("Escolha entre as duas opcoes (1/2).");
+//				break;
+//		}
+//		sc.close();
+//		return tipo;
+//	}
+	
 	public boolean cancelarCorrida(Corrida corrida) {
 		if (corrida.getPassageiro() == this) {
 			corrida.status = StatusCorrida.Cancelada;
