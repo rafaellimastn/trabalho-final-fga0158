@@ -126,15 +126,6 @@ public class Corrida  {
 		this.status = status;
 	}
 
-	public Corrida(String origem, String destino, double distancia, Passageiro passageiro, CategoriaServico categoria) {
-		super();
-		this.origem = origem;
-		this.destino = destino;
-		this.distancia = distancia;
-		this.passageiro = passageiro;
-		this.categoria = categoria;
-	}
-
 	public Corrida(String id, String origem, String destino, double distancia, Passageiro passageiro,
 			CategoriaServico categoria) {
 		super();
@@ -142,6 +133,18 @@ public class Corrida  {
 		this.origem = origem;
 		this.destino = destino;
 		this.distancia = distancia;
+		this.passageiro = passageiro;
+		this.categoria = categoria;
+	}
+
+	public Corrida(String id, String origem, String destino, double distancia, Motorista motorista,
+			Passageiro passageiro, CategoriaServico categoria) {
+		super();
+		this.id = id;
+		this.origem = origem;
+		this.destino = destino;
+		this.distancia = distancia;
+		this.motorista = motorista;
 		this.passageiro = passageiro;
 		this.categoria = categoria;
 	}

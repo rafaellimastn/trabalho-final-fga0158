@@ -6,31 +6,27 @@ import entidades.*;
 import exceptions.*;
 
 public class GerenciadorDeCorridas {
-	
-	public GerenciadorDeCorridas(Motorista motoristaDisponivel) {
-		this.motoristaDisponivel = motoristaDisponivel;
-	}
-	
-	public void solicitarCorrida(Passageiro passageiro, String origem, 
-			String destino, double distanciaKm, CategoriaServico categoria, MetodoDePagamento metodoPagamento) throws NegocioException {
+
+	public Corrida solicitarCorrida(Passageiro passageiro, Motorista motorista, String origem, 
+		String destino, double distancia, CategoriaServico categoria, MetodoDePagamento metodoPagamento) throws NegocioException {
 		
-		if (passageiro.temPendenciaFinanceira()) {
+		if (passageiro.isPendenciaFinanceira()) {
 			throw new NegocioException("Passageiro com pendências financeiras. Não é possível solicitar nova corrida.");
 		}
 		
-		if (motoristaDisponivel == null || motoristaDisponivel.getStatusDisponibilidade() != StatusMotorista.ONLINE) {
+		if (motorista == null || motorista.getStatus() != StatusMotorista.Offline) {
             throw new NenhumMotoristaDisponivelException("Nenhum motorista online disponível no momento.");
 		}
 		
-//		String id = UUID.randomUUID().toString().substring(0,8);
-//		Corrida novaCorrida = new Corrida(id,  origem, destino, distanciaKm, passageiro, categoria);
-//		
-//		novaCorrida.setMotorista(motoristaDisponivel);
-//		motoristaDisponivel.aceitarCorrida(novaCorrida);
-//		novaCorrida.setStatus(StatusCorrida.Aceita);
-//		
-//		System.out.println("Corrida " + id + "solicitada e atribuída ao motorista " + motoristaDisponivel.getNome());
-//		return novaCorrida;
+		String id = UUID.randomUUID().toString().substring(0,8);
+		Corrida novaCorrida = new Corrida(id,  origem, destino, distancia, motorista, passageiro, categoria);
+		
+		novaCorrida.setMotorista(motorista);
+		motorista.aceitarCorrida(novaCorrida);
+		novaCorrida.setStatus(StatusCorrida.Aceita);
+		
+		System.out.println("Corrida " + id + "solicitada e atribuída ao motorista " + motorista.getNome());
+		return novaCorrida;
 	}
 	
 	public void iniciarViagem(Corrida corrida) throws EstadoInvalidoDaCorridaException {
