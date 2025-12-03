@@ -7,9 +7,6 @@ import exceptions.*;
 
 public class GerenciadorDeCorridas {
 	
-	private Motorista motoristaDisponivel;
-	private 
-	
 	public GerenciadorDeCorridas(Motorista motoristaDisponivel) {
 		this.motoristaDisponivel = motoristaDisponivel;
 	}

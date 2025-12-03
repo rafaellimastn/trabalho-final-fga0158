@@ -1,10 +1,13 @@
 package entidades;
 
+import servicos.GerenciadorDeCorridas;
+
 public class Motorista extends Usuario{
 	
 	private CNH cnh;
 	private StatusMotorista status;
 	Veiculo veiculo;
+	GerenciadorDeCorridas gerenciadorCorrida;
 	
 	public void iniciarCorrida(Corrida corrida) {
 		corrida.setStatus(StatusCorrida.EmAndamento);
@@ -18,11 +21,6 @@ public class Motorista extends Usuario{
 
 	public boolean cancelarCorrida(Corrida corrida) {
 		corrida.setStatus(StatusCorrida.Cancelada);
-//		for (int i = 0; i < ListaDeCorridas.size(); i++) {
-//			if(ListaDeCorridas.get(i).equals(corrida)) {
-//				ListaDeCorridas.remove(i);
-//				return true;
-//				break;
 		return true;
 		}
 	

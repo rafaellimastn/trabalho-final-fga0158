@@ -9,7 +9,10 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.UUID;
 
+import servicos.GerenciadorDeCorridas;
+
 public class Passageiro extends Usuario {
+	GerenciadorDeCorridas gerenciadorCorrida;
 	@SuppressWarnings("unused")
 	private boolean pendenciaFinanceira;
 	private List<MetodoDePagamento> metodosDePagamento = new ArrayList<>();
@@ -29,13 +32,12 @@ public class Passageiro extends Usuario {
 		} 
 	
 	public Corrida solicitarCorrida() {
-		String origem, destino;
 		double distancia;
 		Scanner sc = new Scanner(System.in);
 		
 		String id = UUID.randomUUID().toString().substring(0,8);
-		origem = getString("Qual a origem?", sc);
-		destino = getString("Qual a destino?", sc);
+		String origem = getString("Qual a origem?", sc);
+		String destino = getString("Qual a destino?", sc);
 		Random gerador = new Random();
 		distancia = gerador.nextInt(49) + 1;
 		CategoriaServico categoria = escolherTipoCorrida();
@@ -70,28 +72,6 @@ public class Passageiro extends Usuario {
 		sc.close();
 		return categoria;
 	}
-// 	private TipoCorrida escolherTipoCorrida() {
-//		int num;
-//		TipoCorrida tipo = null;
-//		Scanner sc = new Scanner(System.in);
-//		System.out.println("Qual tipo de corrida?");
-//		System.out.println("1. Comum");
-//		System.out.println("2. Luxo");
-//		num = sc.nextInt();
-//		switch (num) {
-//			case 1:
-//				 tipo = TipoCorrida.Comum;
-//				 break;
-//			case 2:
-//				tipo = TipoCorrida.Luxo;
-//				break;
-//			default:
-//				System.out.println("Escolha entre as duas opcoes (1/2).");
-//				break;
-//		}
-//		sc.close();
-//		return tipo;
-//	}
 	
 	public boolean cancelarCorrida(Corrida corrida) {
 		if (corrida.getPassageiro() == this) {

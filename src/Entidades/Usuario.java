@@ -14,7 +14,7 @@ public class Usuario {
 		Scanner sc = new Scanner(System.in);
 		setNome(getString("Qual seu nome?", sc));
 		setCpf(getString("Qual seu cpf?", sc));
-		setEmail(getString("Qual seu email?", sc)) ;
+		setEmail(getString("Qual seu email?", sc));
 		setTelefone(getString("Qual seu telefone?", sc));
 		setSenha (getString("Qual sua senha?", sc));
 	}
@@ -25,12 +25,16 @@ public class Usuario {
 		return resposta;
 	}
 	
-	public boolean autenticar(String senha) {
+	public boolean autenticar() {
+		Scanner sc = new Scanner(System.in);
+		String senha = sc.next();
 		if (senha.equals(this.senha)) {
 			System.out.println("Voce foi autenticado com sucesso.");
+			sc.close();
 			return true;
 		}
 		System.out.println("Senha incorreta.");
+		sc.close();
 		return false;
 	}
 	
