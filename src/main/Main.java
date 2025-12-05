@@ -3,30 +3,42 @@ package main;
 import java.util.Scanner;
 
 import entidades.*;
+import servicos.GerenciadorDeCorridas;
+import servicos.GerenciadorUsuario;
 
 public class Main {
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
-		// tela inicial
+		// Instanciar gerenciadores 
+		GerenciadorUsuario gerenciadorUsuario = new GerenciadorUsuario();
+		GerenciadorDeCorridas gerenciadorCorridas = new GerenciadorDeCorridas(gerenciadorUsuario);
+		
 		Scanner sc = new Scanner(System.in);
+		// Menu Inicial
 		System.out.println("--BEM VINDO AO SISTEMA DE RIDE-SHARING--\nDeseja se cadastrar?(S/N)");
 		char resposta = sc.next().toLowerCase().charAt(0);
 		if (resposta == 'n') {
 			System.out.println("Tudo bem, ate breve!");
 			System.exit(1);
 		} 
-		Passageiro p = cadastrarPassageiro();	
+		// cadastrar passagiro na lista de usuarios
+		Passageiro p = cadastrarPassageiro();
+		p.setGerenciadorCorridas(gerenciadorCorridas);
+		p.getGerenciadorCorridas().getGerenciadorUsuario().CadastrarPassageiro(p);
+		
+		// cadastrar motorista na lista de usuarios
+			// TODO
+		
 		System.out.println("Deseja solicitar uma corrida?(S/N)");
 		resposta = sc.next().toLowerCase().charAt(0);
 		if (resposta == 'n') {
 			System.out.println("Tudo bem, ate breve!");
+			System.exit(2);
 		}
-		Corrida c = p.solicitarCorrida();
 		
-		Motorista c = cadastrarMotorista();
+		// solicitando a corrida
+		Corrida c = p.getGerenciadorCorridas().solicitarCorrida(p, null);
 		c.imprimirMenu();
-	}
-	private static Motorista cadastrarMotorista() {
-		Scanner sc3 = new Scanner(System.in);
 	}
 	private static Passageiro cadastrarPassageiro() {
 		Scanner sc2 = new Scanner(System.in);

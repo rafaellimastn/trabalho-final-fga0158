@@ -1,9 +1,7 @@
 package entidades;
 
 import java.util.Scanner;
-
 import servicos.GerenciadorDeCorridas;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,6 +108,14 @@ public class Usuario {
 
 	public double getMediaAvaliacao() {
 		return mediaAvaliacao;
+	}
+
+	public GerenciadorDeCorridas getGerenciadorCorridas() {
+		return gerenciadorCorridas;
+	}
+
+	public void setGerenciadorCorridas(GerenciadorDeCorridas gerenciadorCorridas) {
+		this.gerenciadorCorridas = gerenciadorCorridas;
 	}
 
 }

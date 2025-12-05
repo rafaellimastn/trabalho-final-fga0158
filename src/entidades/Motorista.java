@@ -1,4 +1,4 @@
-package Entidades;
+package entidades;
 
 public class Motorista extends Usuario{
 
@@ -29,8 +29,9 @@ public class Motorista extends Usuario{
     }
 
     public boolean aceitarCorrida(Corrida corrida) {
-        if (this.status == StatusMotorista.Online) {
+        if (this.getStatus() == StatusMotorista.Online) {
             corrida.setMotorista(this);
+            this.setStatus(StatusMotorista.EmCorrida);
             corrida.setStatus(StatusCorrida.Aceita);
             return true;
         } else {
@@ -39,7 +40,7 @@ public class Motorista extends Usuario{
         }
     }
 
-    public void serAvaliado(Passageiro passageiro, Corrida corrida, int nota, String comentario) {
+    /* public void serAvaliado(Passageiro passageiro, Corrida corrida, int nota, String comentario) {
         if (corrida == null) throw new IllegalArgumentException("Corrida nula.");
         if (!corrida.getPassageiro().equals(passageiro)) {
             throw new IllegalArgumentException("Somente o passageiro da corrida pode avaliar o motorista.");
@@ -53,7 +54,7 @@ public class Motorista extends Usuario{
 
         Avaliacao avaliacao = new Avaliacao(passageiro, this, corrida, nota, comentario);
         this.receberAvaliacao(avaliacao);
-    }
+    } */
 
     public Motorista(String nome, String cpf, String email, String telefone, String senha, Veiculo veiculo, CNH cnh) {
         super(nome, cpf, email, telefone, senha);

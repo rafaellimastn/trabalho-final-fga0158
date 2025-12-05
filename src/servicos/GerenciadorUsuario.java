@@ -1,7 +1,6 @@
 package servicos;
 
 import java.util.List;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import entidades.*;
 
@@ -10,17 +9,26 @@ public class GerenciadorUsuario {
 	private List<Usuario> listaDeUsuarios = new ArrayList<>();
 	private List<Motorista> listaDeMotoristas = new ArrayList<>();
 	
-	public void CadastrarPassageiro(String nome, String cpf, String email, String telefone, String senha) {
-		Passageiro NovoPassageiro = new Passageiro(nome, cpf, email, telefone, senha);
-		listaDeUsuarios.add(NovoPassageiro);
+	protected Motorista selecionarMotorista() {
+		for (Motorista m : listaDeMotoristas) {
+			if (m.getStatus() == StatusMotorista.Online) {
+				return m;
+			}
+			System.out.println("Nenhum motorista disponível.");
+		}
+		return null;
+	}
+	public void CadastrarPassageiro(Passageiro passageiro) {
+		listaDeUsuarios.add(passageiro);
 		}
 		
-	public void CadastrarMotorista(String nome, String cpf, String email, String telefone, String senha, String modelo, String cor, String ano, String placa, String numero, LocalDate data) {
-		Motorista novoMotorista = new Motorista(nome, cpf, email, telefone, senha);
+	public void CadastrarMotorista(Motorista motorista) {
+		/*Motorista novoMotorista = new Motorista(nome, cpf, email, telefone, senha);
 		novoMotorista.comprarCarro(placa, modelo, cor, ano);
 		novoMotorista.tirarCNH(numero, data);
-		listaDeMotoristas.add(novoMotorista);
-		listaDeUsuarios.add(novoMotorista);
+		*/
+		listaDeMotoristas.add(motorista);
+		listaDeUsuarios.add(motorista);
 		}
 
 	public List<Usuario> getListaDeUsuarios() {
