@@ -8,6 +8,8 @@ public class CartaoCredito implements MetodoDePagamento {
 	@SuppressWarnings("unused")
 	private String numero, validade, codigoSeguranca;
 	
+	public CartaoCredito() {}
+	
 	public CartaoCredito(String numero, String validade, String codigoSeguranca) {
 		this.numero = numero;
 		this.validade = validade;
@@ -24,7 +26,9 @@ public class CartaoCredito implements MetodoDePagamento {
 		
 		System.out.println("Pagamento de R$ " + valor + " via Cartão de Crédito aprovado");
 	}
-	
+	public String getNome() {
+		return "Cartao de credito";
 	}
+}
 	
 

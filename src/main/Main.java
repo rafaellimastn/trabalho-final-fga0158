@@ -24,7 +24,7 @@ public class Main {
 		} 
 		// cadastrar passageiro na lista de usuarios
 		Passageiro p = cadastrarPassageiro(gerenciadorCorridas, sc);
-				
+
 		// cadastrar motorista na lista de usuarios
 		Motorista m = cadastrarMotorista(gerenciadorCorridas, sc);
 		
@@ -34,12 +34,29 @@ public class Main {
 			System.out.println("Tudo bem, ate breve!");
 			System.exit(2);
 		}
+		Pix metodo1 = new Pix(p.getEmail());
+		p.adicionarMetodoPagamento(metodo1);
+		CartaoCredito metodo2 = new CartaoCredito();
+		p.adicionarMetodoPagamento(metodo2);
 		
 		// solicitando a corrida
-		Corrida c = p.getGerenciadorCorridas().solicitarCorrida(p, /* metodo de pagamento*/ null);
+		MetodoDePagamento metodo = escolherMetodo(p, sc);
+		System.out.println("Metodo de pagamento escolhido: " + metodo.getNome());
+		Corrida c = p.getGerenciadorCorridas().solicitarCorrida(p, metodo);
 		c.imprimirMenu();
+		c.getGerenciadorCorrida().iniciarCorrida(c);
 	}
 	
+	private static MetodoDePagamento escolherMetodo(Passageiro p, Scanner sc) {
+		System.out.println("Qual metodo de pagamento voce deseja escolher?");
+		
+		for(MetodoDePagamento metodo : p.getMetodosDePagamento()) {
+			int i = p.getMetodosDePagamento().indexOf(metodo) + 1;
+			System.out.println(i + ". " + metodo.getNome());
+		}
+		int n = sc.nextInt();
+		return p.getMetodosDePagamento().get(n - 1);
+	}
 	private static Motorista cadastrarMotorista(GerenciadorDeCorridas gerenciador, Scanner sc) {
 		Motorista m = new Motorista(gerenciador);
 		m.setNome("Felipe");

@@ -17,7 +17,8 @@ public class GerenciadorDeCorridas {
 		
 		if (passageiro.isPendenciaFinanceira()) {
 			throw new NegocioException("Passageiro com pendências financeiras. Não é possível solicitar nova corrida.");
-		}
+		} // tratar pendencia.
+		
 		// id corrida
 		String id = UUID.randomUUID().toString().substring(0,8);
 		
@@ -32,12 +33,9 @@ public class GerenciadorDeCorridas {
 		
 		CategoriaServico categoria = escolherCategoria(sc);
 		
-		// metodo de pagamento
-		// TODO
-		
-		Corrida corrida = new Corrida(id,  origem, destino, distancia, passageiro, categoria);
+		Corrida corrida = new Corrida(id,  origem, destino, distancia, passageiro, categoria, metodoPagamento);
 		corrida.setValorTotal();
-		
+		corrida.setGerenciadorCorrida(this);
 		Motorista motorista = gerenciadorUsuario.selecionarMotorista();
 		// if (motorista == null || motorista.getStatus() != StatusMotorista.Offline) {
 		// 	throw new NenhumMotoristaDisponivelException("Nenhum motorista online disponível no momento.");
@@ -49,6 +47,9 @@ public class GerenciadorDeCorridas {
 		return corrida;
 	}
 	
+	public void iniciarCorrida(Corrida corrida) {
+		corrida.setStatus(StatusCorrida.EmAndamento);
+	}
 	private CategoriaServico escolherCategoria(Scanner sc) {
 		CategoriaServico categoria;
 		System.out.println("Qual a categoria da corrida?\n1 - Comum\n2 - Luxo");
@@ -73,24 +74,21 @@ public class GerenciadorDeCorridas {
 		String resposta = sc.nextLine();
 		return resposta;
 	}
-	/* public void iniciarViagem(Corrida corrida) throws EstadoInvalidoDaCorridaException {
-		corrida.iniciarViagem();
-	} */
 	
-	/* public void finalizarViagem(Corrida corrida) throws EstadoInvalidoDaCorridaException,
+	public void finalizarCorrida(Corrida corrida) throws EstadoInvalidoDaCorridaException,
 	NegocioException {
 		try {
-		corrida.finalizarViagem();
+		corrida.finalizarCorrida();
 		
-		if (corrida.getStatus() == StatusCorrida.FINALIZADA) {
+		if (corrida.getStatus() == StatusCorrida.Finalizada) {
 			if (corrida.getMotorista() != null) {
-				corrida.getMotorista().setStatus(StatusMotorista.ONLINE);
+				corrida.getMotorista().setStatus(StatusMotorista.Online);
 			}
 		}
 		
-		else if (corrida.getStatus() == StatusCorrida.PENDENTE_PAGAMENTO) {
-				if (corrida.getMotorista != null) {
-					corrida.getMotorista().setStatus(StatusMotorista.ONLINE);
+		else if (corrida.getStatus() == StatusCorrida.PagamentoPendente) {
+				if (corrida.getMotorista() != null) {
+					corrida.getMotorista().setStatus(StatusMotorista.Online);
 				}
 		}
 		
@@ -101,7 +99,7 @@ public class GerenciadorDeCorridas {
 		} 
 	}
 	
-	public void cancelarCorrida(Corrida corrida) throws EstadoInvalidoDaCorridaException {
+	/* public void cancelarCorrida(Corrida corrida) throws EstadoInvalidoDaCorridaException {
 		if (corrida.getStatus() != StatusCorrida.SOLICITADA) {
 			throw new EstadoInvalidoDaCorridaException("Não é possível cancelar. A corrida já foi aceita ou está em andamento. "
 					+ "Status atual: " + corrida.getStatus());

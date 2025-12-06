@@ -20,5 +20,7 @@ public class Pix implements MetodoDePagamento {
 		
 		System.out.println("Pagamento de R$ " + valor + " via PIX concluído com sucesso.");
 	}
-
+	public String getNome() {
+		return "Pix";
+	}
 }

@@ -1,5 +1,6 @@
 package entidades;
 
+import servicos.GerenciadorDeCorridas;
 
 public class Corrida  {
 	private String id, origem, destino;
@@ -8,7 +9,18 @@ public class Corrida  {
 	Passageiro passageiro;
 	StatusCorrida status;
 	CategoriaServico categoria;
+	MetodoDePagamento metodo;
+	GerenciadorDeCorridas gerenciadorCorrida;
 	
+	public void iniciarCorrida() {
+		this.setStatus(StatusCorrida.EmAndamento);
+	}
+	public void finalizarCorrida() {
+		this.setStatus(StatusCorrida.Finalizada);
+	}
+	public void cancelarCorrida() {
+		this.setStatus(StatusCorrida.Cancelada);
+	}
 	public void imprimirMenu() {
 		System.out.println("--MENU DA CORRIDA--");
 		imprimirOrigem();
@@ -141,7 +153,7 @@ public class Corrida  {
 	}
 
 	public Corrida(String id, String origem, String destino, double distancia, Passageiro passageiro,
-			CategoriaServico categoria) {
+			CategoriaServico categoria, MetodoDePagamento metodo) {
 		super();
 		this.id = id;
 		this.origem = origem;
@@ -149,6 +161,7 @@ public class Corrida  {
 		this.distancia = distancia;
 		this.passageiro = passageiro;
 		this.categoria = categoria;
+		this.metodo = metodo;
 	}
 
 	public Corrida(String id, String origem, String destino, double distancia, Motorista motorista,
@@ -161,6 +174,7 @@ public class Corrida  {
 		this.motorista = motorista;
 		this.passageiro = passageiro;
 		this.categoria = categoria;
+		
 	}
 
 	public CategoriaServico getCategoria() {
@@ -170,5 +184,16 @@ public class Corrida  {
 	public void setCategoria(CategoriaServico categoria) {
 		this.categoria = categoria;
 	}
-	
+	public GerenciadorDeCorridas getGerenciadorCorrida() {
+		return gerenciadorCorrida;
+	}
+	public void setGerenciadorCorrida(GerenciadorDeCorridas gerenciadorCorrida) {
+		this.gerenciadorCorrida = gerenciadorCorrida;
+	}
+	public MetodoDePagamento getMetodo() {
+		return metodo;
+	}
+	public void setMetodo(MetodoDePagamento metodo) {
+		this.metodo = metodo;
+	}
 }
