@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+import servicos.GerenciadorDeCorridas;
+
 public class Passageiro extends Usuario {
 
     private boolean pendenciaFinanceira;
@@ -43,5 +45,10 @@ public class Passageiro extends Usuario {
 
 	public void setMetodosDePagamento(List<MetodoDePagamento> metodosDePagamento) {
 		this.metodosDePagamento = metodosDePagamento;
+	}
+
+	public Passageiro(GerenciadorDeCorridas gerenciadorCorridas) {
+		super(gerenciadorCorridas);
+		// TODO Auto-generated constructor stub
 	}
 }

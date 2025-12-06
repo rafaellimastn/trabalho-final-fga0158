@@ -1,11 +1,14 @@
 package entidades;
 
+import servicos.GerenciadorDeCorridas;
+
 public class Motorista extends Usuario{
 
     private CNH cnh;
     private StatusMotorista status;
     private Veiculo veiculo;
 
+    public Motorista() {}
     public void iniciarCorrida(Corrida corrida) {
         if (corrida == null) throw new IllegalArgumentException("Corrida nula.");
         if (this.status != StatusMotorista.Online) throw new IllegalStateException("Motorista não está online.");
@@ -81,4 +84,8 @@ public class Motorista extends Usuario{
     public void setVeiculo(Veiculo veiculo) {
     	this.veiculo = veiculo; 
     	}
+	public Motorista(GerenciadorDeCorridas gerenciadorCorridas) {
+		super(gerenciadorCorridas);
+		// TODO Auto-generated constructor stub
+	}
 }

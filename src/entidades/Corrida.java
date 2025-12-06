@@ -20,6 +20,20 @@ public class Corrida  {
 		imprimirNomeMotorista();
 	}
 	
+	private double calcularPreco() {
+		// definir os precos
+		if (this.getCategoria() instanceof Comum) {
+			setTarifaBase(5);
+			setMultiplicador(1);
+		} else if (this.getCategoria() instanceof Luxo){
+			setTarifaBase(9);
+			setMultiplicador(2.2);
+		}
+		// calcular preco
+		double total = getTarifaBase() + getMultiplicador() * getDistancia();
+		return total;
+	}
+	
 	private void imprimirOrigem() {
 		System.out.println("Origem: " + getOrigem() + ".");
 	}
@@ -86,8 +100,8 @@ public class Corrida  {
 		return valorTotal;
 	}
 
-	public void setValorTotal(double valorTotal) {
-		this.valorTotal = valorTotal;
+	public void setValorTotal() {
+		this.valorTotal = calcularPreco();
 	}
 
 	public double getTarifaBase() {
@@ -146,6 +160,14 @@ public class Corrida  {
 		this.distancia = distancia;
 		this.motorista = motorista;
 		this.passageiro = passageiro;
+		this.categoria = categoria;
+	}
+
+	public CategoriaServico getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaServico categoria) {
 		this.categoria = categoria;
 	}
 	

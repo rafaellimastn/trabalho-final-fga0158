@@ -114,4 +114,9 @@ public class Usuario {
 		this.gerenciadorCorridas = gerenciadorCorridas;
 	}
 
+	public Usuario(GerenciadorDeCorridas gerenciadorCorridas) {
+		super();
+		this.gerenciadorCorridas = gerenciadorCorridas;
+	}
+
 }

@@ -14,8 +14,8 @@ public class GerenciadorUsuario {
 			if (m.getStatus() == StatusMotorista.Online) {
 				return m;
 			}
-			System.out.println("Nenhum motorista disponível.");
 		}
+		System.out.println("Nenhum motorista disponível.");
 		return null;
 	}
 	public void CadastrarPassageiro(Passageiro passageiro) {

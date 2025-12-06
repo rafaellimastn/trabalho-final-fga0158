@@ -33,14 +33,15 @@ public class GerenciadorDeCorridas {
 		CategoriaServico categoria = escolherCategoria(sc);
 		
 		// metodo de pagamento
-			// TODO
+		// TODO
 		
 		Corrida corrida = new Corrida(id,  origem, destino, distancia, passageiro, categoria);
+		corrida.setValorTotal();
 		
 		Motorista motorista = gerenciadorUsuario.selecionarMotorista();
-		if (motorista == null || motorista.getStatus() != StatusMotorista.Offline) {
-			throw new NenhumMotoristaDisponivelException("Nenhum motorista online disponível no momento.");
-		}
+		// if (motorista == null || motorista.getStatus() != StatusMotorista.Offline) {
+		// 	throw new NenhumMotoristaDisponivelException("Nenhum motorista online disponível no momento.");
+		// }
 		
 		motorista.aceitarCorrida(corrida);
 		
@@ -58,6 +59,7 @@ public class GerenciadorDeCorridas {
 				break;
 			case 2:
 				categoria = new Luxo();
+				break;
 			default:
 				System.out.println("Selecione 1 ou 2.");
 				categoria = null;
