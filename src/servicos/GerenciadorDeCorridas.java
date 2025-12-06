@@ -31,8 +31,10 @@ public class GerenciadorDeCorridas {
 		double distancia = gerador.nextInt(49) + 1;
 		
 		CategoriaServico categoria = escolherCategoria(sc);
+		
 		// metodo de pagamento
 			// TODO
+		
 		Corrida corrida = new Corrida(id,  origem, destino, distancia, passageiro, categoria);
 		
 		Motorista motorista = gerenciadorUsuario.selecionarMotorista();

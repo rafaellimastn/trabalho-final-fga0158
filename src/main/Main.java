@@ -7,7 +7,6 @@ import servicos.GerenciadorDeCorridas;
 import servicos.GerenciadorUsuario;
 
 public class Main {
-	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		// Instanciar gerenciadores 
 		GerenciadorUsuario gerenciadorUsuario = new GerenciadorUsuario();
@@ -21,8 +20,11 @@ public class Main {
 			System.out.println("Tudo bem, ate breve!");
 			System.exit(1);
 		} 
-		// cadastrar passagiro na lista de usuarios
-		Passageiro p = cadastrarPassageiro();
+		
+		// cadastrar passageiro na lista de usuarios
+		Passageiro p = cadastrarPassageiro(sc);
+		sc.next();
+		
 		p.setGerenciadorCorridas(gerenciadorCorridas);
 		p.getGerenciadorCorridas().getGerenciadorUsuario().CadastrarPassageiro(p);
 		
@@ -37,17 +39,16 @@ public class Main {
 		}
 		
 		// solicitando a corrida
-		Corrida c = p.getGerenciadorCorridas().solicitarCorrida(p, null);
+		Corrida c = p.getGerenciadorCorridas().solicitarCorrida(p, /* metodo de pagamento*/ null);
 		c.imprimirMenu();
 	}
-	private static Passageiro cadastrarPassageiro() {
-		Scanner sc2 = new Scanner(System.in);
+	private static Passageiro cadastrarPassageiro(Scanner sc) {
 		Passageiro p = new Passageiro();
-		p.setNome(getString("Qual seu nome?", sc2));
-		p.setCpf(getString("Qual seu cpf?", sc2));
-		p.setEmail(getString("Qual seu email?", sc2)) ;
-		p.setTelefone(getString("Qual seu telefone?", sc2));
-		p.setSenha (getString("Qual sua senha?", sc2));
+		p.setNome(getString("Qual seu nome?", sc));
+		p.setCpf(getString("Qual seu cpf?", sc));
+		p.setEmail(getString("Qual seu email?", sc)) ;
+		p.setTelefone(getString("Qual seu telefone?", sc));
+		p.setSenha (getString("Qual sua senha?", sc));
 		return p;
 	}
 	

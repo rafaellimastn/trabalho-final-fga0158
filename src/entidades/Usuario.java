@@ -41,11 +41,7 @@ public class Usuario {
 	}
 	
 	public Usuario() {}
-	// apagar pos teste
-	public Usuario(String nome) {
-		super();
-		this.nome = nome;
-	}
+	
 	public Usuario(String nome, String cpf, String email, String telefone, String senha) {
 		super();
 		this.nome = nome;
@@ -84,8 +80,8 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-// avaliação
-
+	
+	// avaliação
 	public void receberAvaliacao(Avaliacao avaliacao) {
 		if (avaliacao != null) {
 			avaliacoes.add(avaliacao);
