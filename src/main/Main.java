@@ -34,14 +34,16 @@ public class Main {
 			System.out.println("Tudo bem, ate breve!");
 			System.exit(2);
 		}
+		// metodos genericos d pagamento para teste
 		Pix metodo1 = new Pix(p.getEmail());
 		p.adicionarMetodoPagamento(metodo1);
 		CartaoCredito metodo2 = new CartaoCredito();
 		p.adicionarMetodoPagamento(metodo2);
 		
-		// solicitando a corrida
 		MetodoDePagamento metodo = escolherMetodo(p, sc);
 		System.out.println("Metodo de pagamento escolhido: " + metodo.getNome());
+		
+		// solicitando a corrida
 		Corrida c = p.getGerenciadorCorridas().solicitarCorrida(p, metodo);
 		c.imprimirMenu();
 		c.getGerenciadorCorrida().iniciarCorrida(c);

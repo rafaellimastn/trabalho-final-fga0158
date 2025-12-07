@@ -48,7 +48,11 @@ public class GerenciadorDeCorridas {
 	}
 	
 	public void iniciarCorrida(Corrida corrida) {
-		corrida.setStatus(StatusCorrida.EmAndamento);
+		if (corrida.getStatus() == StatusCorrida.Aceita) {
+			corrida.setStatus(StatusCorrida.EmAndamento);
+		} else {
+			// Falha ao iniciar corrida(excpetion)
+		}
 	}
 	private CategoriaServico escolherCategoria(Scanner sc) {
 		CategoriaServico categoria;
