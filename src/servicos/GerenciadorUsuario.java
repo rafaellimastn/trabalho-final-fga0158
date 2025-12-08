@@ -23,10 +23,6 @@ public class GerenciadorUsuario {
 		}
 		
 	public void CadastrarMotorista(Motorista motorista) {
-		/*Motorista novoMotorista = new Motorista(nome, cpf, email, telefone, senha);
-		novoMotorista.comprarCarro(placa, modelo, cor, ano);
-		novoMotorista.tirarCNH(numero, data);
-		*/
 		listaDeMotoristas.add(motorista);
 		listaDeUsuarios.add(motorista);
 		}

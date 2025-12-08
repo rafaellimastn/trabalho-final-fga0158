@@ -16,10 +16,6 @@ public class CNH {
         return numero;
     }
 
-    public String getNomeMotorista() {
-        return nomeMotorista;
-    }
-
     public LocalDate getDataVencimento() {
         return dataVencimento;
     }
@@ -27,10 +23,6 @@ public class CNH {
     // Setters (apenas se for necessário atualizar, como a renovação da CNH)
     public void setNumero(String numero) {
         this.numero = numero;
-    }
-
-    public void setNomeMotorista(String nomeMotorista) {
-        this.nomeMotorista = nomeMotorista;
     }
     
     public void setDataVencimento(LocalDate dataVencimento) {

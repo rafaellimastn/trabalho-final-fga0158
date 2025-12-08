@@ -105,14 +105,14 @@ public class GerenciadorDeCorridas {
 		} 
 	}
 	
-	/* public void cancelarCorrida(Corrida corrida) throws EstadoInvalidoDaCorridaException {
-		if (corrida.getStatus() != StatusCorrida.SOLICITADA) {
+	public void cancelarCorrida(Corrida corrida) throws EstadoInvalidoDaCorridaException {
+		if (corrida.getStatus() != StatusCorrida.Solicitada) {
 			throw new EstadoInvalidoDaCorridaException("Não é possível cancelar. A corrida já foi aceita ou está em andamento. "
 					+ "Status atual: " + corrida.getStatus());
 		}
-		corrida.cancelar();
+		corrida.cancelarCorrida();
 	}
-	*/
+	
 
 	public GerenciadorDeCorridas(GerenciadorUsuario gerenciadorUsuario) {
 		super();
