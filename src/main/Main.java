@@ -92,7 +92,7 @@ public class Main {
 		if (resposta == 's') {
 			System.out.println("Qual a nota do motorista?");
 			int nota = sc.nextInt();
-			System.out.println("Escreve uma mensagem para o motorista");
+			System.out.println("Escreve uma mensagem para o motorista:");
 			sc.next();
 			
 			String mensagem = sc.nextLine();
