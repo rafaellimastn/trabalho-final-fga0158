@@ -3,13 +3,11 @@ import java.time.LocalDate;
 public class CNH {
 
 	private String numero;
-    private String nomeMotorista;
     private LocalDate dataVencimento; // LocalDate é ideal para datas como vencimento
 
     // Construtor
-    public CNH(String numero, String nomeMotorista, LocalDate dataVencimento) {
+    public CNH(String numero, LocalDate dataVencimento) {
         this.numero = numero;
-        this.nomeMotorista = nomeMotorista;
         this.dataVencimento = dataVencimento;
     }
 

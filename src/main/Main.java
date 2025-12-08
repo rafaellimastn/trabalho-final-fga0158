@@ -1,5 +1,6 @@
 package main;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -12,6 +13,7 @@ import servicos.GerenciadorUsuario;
 public class Main {
 	public static final long MINUTO = 60000;
 	public static final long SEGUNDO = 1000;
+	private static final Random RANDOM = new Random();
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		// Instanciar gerenciadores 
@@ -30,7 +32,7 @@ public class Main {
 		// cadastrar passageiro na lista de usuarios
 		Passageiro p = cadastrarPassageiro(gerenciadorCorridas, sc);
 
-		// cadastrar motorista na lista de usuarios
+		// criar lista de motoristas disponiveis
 		Motorista m;
 		gerenciadorUsuario.setListaDeMotoristas(criarListaMotoristas(gerenciadorCorridas));
 		do {
@@ -147,9 +149,24 @@ public class Main {
 	}
 	
 	private static Motorista escolherMotorista(List<Motorista> lista) {
-		Random gerador = new Random();
-		int index = gerador.nextInt(25);
+		int index = RANDOM.nextInt(25);
 		return lista.get(index);
+	}
+	
+	private static CNH gerarCnh() {
+		StringBuilder numeroCnh = new StringBuilder();
+        for (int i = 0; i < 11; i++) {
+            // digito de 0 a 9
+            numeroCnh.append(RANDOM.nextInt(10)); 
+        }
+
+        // data de vencimento (entre 1 e 5 anos a partir do dia que o codigo foi executado)
+        LocalDate hoje = LocalDate.now();
+        // Adiciona um número aleatório de anos (1 a 5) à data atual
+        int anosParaVencer = RANDOM.nextInt(5) + 1; 
+        LocalDate dataVencimento = hoje.plusYears(anosParaVencer);
+
+        return new CNH(numeroCnh.toString(), dataVencimento);
 	}
 	
 	private static List<Motorista> criarListaMotoristas(GerenciadorDeCorridas gerenciador) {
@@ -165,9 +182,12 @@ public class Main {
             String nome = NOMES[i];
             Motorista m = cadastrarMotorista(gerenciador, nome);
             lista.add(m);
+            CNH cnh = gerarCnh();
+            m.setCnh(cnh);
         }
 		return lista;
 	}
+	
 	private static Motorista cadastrarMotorista(GerenciadorDeCorridas gerenciador, String nome) {
 		Motorista m = new Motorista(gerenciador);
 		m.setNome(nome);
