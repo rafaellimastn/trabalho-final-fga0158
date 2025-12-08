@@ -37,21 +37,23 @@ public class GerenciadorDeCorridas {
 		corrida.setValorTotal();
 		corrida.setGerenciadorCorrida(this);
 		Motorista motorista = gerenciadorUsuario.selecionarMotorista();
-		// if (motorista == null || motorista.getStatus() != StatusMotorista.Offline) {
-		// 	throw new NenhumMotoristaDisponivelException("Nenhum motorista online disponível no momento.");
-		// }
+		if (motorista == null || motorista.getStatus() == StatusMotorista.Offline) {
+	 	throw new NenhumMotoristaDisponivelException("Nenhum motorista online disponível no momento.");
+		}
 		
 		motorista.aceitarCorrida(corrida);
 		
 		System.out.println("Corrida " + id + " foi solicitada e atribuída ao motorista " + motorista.getNome());
 		return corrida;
 	}
-	
+	public void pagarCorrida(Corrida corrida, MetodoDePagamento metodo) {
+		metodo.processarPagamento(corrida.getValorTotal());
+	}
 	public void iniciarCorrida(Corrida corrida) {
 		if (corrida.getStatus() == StatusCorrida.Aceita) {
 			corrida.setStatus(StatusCorrida.EmAndamento);
 		} else {
-			// Falha ao iniciar corrida(excpetion)
+			throw new EstadoInvalidoDaCorridaException("Tentou iniciar uma corrida nao aceita.");
 		}
 	}
 	private CategoriaServico escolherCategoria(Scanner sc) {

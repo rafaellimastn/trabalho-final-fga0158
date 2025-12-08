@@ -18,13 +18,15 @@ public class CartaoCredito implements MetodoDePagamento {
 
 	@Override
 	public void processarPagamento(double valor) throws NegocioException {
-		System.out.println("Processando pagamento de R$ " + valor + " via Cartão de Crédito");
-	
+		int intValor = (int) valor;
+		System.out.println("Processando pagamento de R$ " + intValor + ",00 via Cartão de Crédito");
+		
 		if (Math.random() < 0.1) {
-            throw new PagamentoRecusadoException("Pagamento de R$ " + valor + " recusado pela operadora do cartão.");
+            throw new PagamentoRecusadoException("Pagamento de R$ " + intValor + ",00 recusado pela operadora do cartão.");
         }
 		
-		System.out.println("Pagamento de R$ " + valor + " via Cartão de Crédito aprovado");
+		
+		System.out.println("Pagamento de R$ " + intValor + ",00 via Cartão de Crédito aprovado");
 	}
 	public String getNome() {
 		return "Cartao de credito";
